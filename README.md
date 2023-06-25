@@ -1,6 +1,10 @@
 # 2_TZ_1
 
+## What is this?
 
+Com S 309 is an Android App development class that I took in the Spring of 2023. I was awarded "Best Manager" for my work on this project and I am really happy with how my work on it (Backend) came out. It is all documented in the Backend folder, please take a look!
+
+-------------------------------
 
 ## Getting started
 
