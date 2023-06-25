@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/groups"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lists.GroupsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.ToDoS"
+        android:backgroundTint="#CCFFFFFF">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="Groups"
+            android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/goToUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Profile" />
+
+        <Button
+            android:id="@+id/goToTodos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Todos" />
+
+        <Button
+            android:id="@+id/goToCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="To Calendar" />
+
+        <Button
+            android:id="@+id/goToNewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a new group" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listOnlineStatus"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@color/black"
+                android:dividerHeight="1dp"
+                android:paddingLeft="2dp">
+            </ListView>
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

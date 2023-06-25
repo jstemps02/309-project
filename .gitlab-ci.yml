@@ -1,0 +1,92 @@
+stages:
+  - mavenbuild
+  - maventest
+  - maven-deploy
+  - androidbuild
+  - androidtest
+
+maven-build:
+  stage: mavenbuild
+  only:
+    refs:
+      - main
+    changes:
+      - Backend/**/*
+  tags:
+    - springboot_tag
+    - main_branch
+  script:
+    - cd Backend # to where you have the pom.xml
+    - mvn package
+
+maven-test:
+  stage: maventest
+  only:
+    refs:
+      - main
+    changes:
+      - Backend/**/*
+  tags:
+    - springboot_tag
+    - main_branch
+  script:
+    - cd Backend # to where you have the pom.xml
+    - mvn test
+
+maven-deploy:
+  stage: maven-deploy
+  only:
+    refs:
+      - main
+    changes:
+      - Backend/**/*
+  tags:
+    - springboot_tag
+    - main_branch
+
+  script:
+    - cd Backend # to where you have the pom.xml
+    - mvn package
+    - sudo mv target/*.jar /target/backend-1.0.0.jar
+    - sudo systemctl stop 2_TZ_1_SB
+    - sudo systemctl start 2_TZ_1_SB
+
+android-build:
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  only:
+    refs:
+      - main
+    changes:
+      - Frontend/**/*
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+    - android_tag
+    - Jacob_tag
+  script:
+    - cd Frontend
+    - ./gradlew build
+  artifacts:
+    paths:
+      - Android_test/app/build/outputs/
+
+# Comment so I can push this again
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  only:
+    refs:
+      - main
+    changes:
+      - Frontend/**/*
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+    - android_tag
+    - Jacob_tag
+  script:
+    - cd Frontend
+    - ./gradlew test
